@@ -1,19 +1,43 @@
 #controles ul {
-  list-style-type: none;
-  padding: 0;
-  transform: translateX(-80%);
+    list-style-type: none;
+    padding: 0;
+    transform: translateX(-80%);
 }
 
 #controles ul:hover {
-  transform: translateX(0);
+    transform: translateX(0);
+    opacity: 1;
 }
+
 
 /* Exercício 1: Criar uma transição para quando o mouse estiver em cima dos
  * botões play/stop (para que o elemento se revele lentamente)
  */
- #controles ul {
 
- }
+
+/*-----------Efeito de fade-in usando com transition.-----------*/
+
+
+/* #controles ul {
+    transition: opacity 500ms linear;
+    opacity: 0;
+} */
+
+
+/*-----------Efeito de fade-in usando com animation.------------*/
+
+
+/*Efeito fade-in-fade-out aplicado sobre a classe
+ "item" usando animation apenas para utilização do alternate-reverse.
+ Apenas por estética.*/
+
+.item:hover {
+    animation: sumiu 600ms linear 0s infinite alternate-reverse;
+}
+
+
+/*--------------------------------------------------------------*/
+
 
 /*
  * Exercício 2: Você deve implementar uma metáfora visual para cada um dos 4
@@ -23,18 +47,82 @@
  *   - com-raiva: animal fica pulsando
  *   - atacando: animal dá um salto e cresce, com uma borda vermelha
  */
-.com-fome {
 
+.com-fome {
+    position: relative;
+    animation: sumiu 500ms ease-in-out 0s infinite alternate;
+    /* animation: urrando-de-fome 600ms linear 0s infinite alternate-reverse */
 }
 
 .satisfeito {
-
+    animation: girando 600ms ease-in alternate forwards;
 }
 
 .com-raiva {
-
+    animation: tremendo 1s cubic-bezier(.36, .07, .19, .97) both infinite;
+    transform: translate3d(0, 0, 0);
 }
 
 .atacando {
+    animation: atacando 500ms ease-in-out 0s infinite alternate;
+}
 
+@keyframes sumiu {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
+}
+
+@keyframes atacando {
+    from {
+        transform: scale(1);
+    }
+    to {
+        transform: scale(1.2);
+        border-color: red;
+        border-width: 10px;
+    }
+}
+
+
+/*Taken from: https://css-tricks.com/snippets/css/shake-css-keyframe-animation/ */
+
+@keyframes tremendo {
+    10%,
+    90% {
+        transform: translate3d(0, -1px, 0);
+        border-color: yellow;
+        border-width: 7px;
+    }
+    20%,
+    80% {
+        transform: translate3d(0, 2px, 0);
+        border-color: yellow;
+        border-width: 5px;
+    }
+    30%,
+    50%,
+    70% {
+        transform: translate3d(0, -4px, 0);
+        border-color: orange;
+        border-width: 7px;
+    }
+    40%,
+    60% {
+        transform: translate3d(0, 4px, 0);
+        border-color: orange;
+        border-width: 5px;
+    }
+}
+
+@keyframes girando {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
 }
