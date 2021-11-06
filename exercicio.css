@@ -124,5 +124,7 @@
     }
     to {
         transform: rotate(360deg);
+        border-color: green;
+        border-inline-width: 10px;
     }
 }
